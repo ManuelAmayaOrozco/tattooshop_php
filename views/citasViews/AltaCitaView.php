@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/css/citasStyles/styles_altaCita.css">
+    <link rel="stylesheet" href="../public/css/citasStyles/styles_altaCita.css">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -16,7 +16,7 @@
 <body>
 
     <main class="body__main">
-        <form class="main__form-plantilla" action="****CAMBIAR ACTION*****" method="post">
+        <form class="main__form-plantilla" action="/tattooshop_php/citas/alta" method="post">
             <div class="form-plantilla__container">
                 <div class="form-group">
                     <label for="input_id">Id</label>
@@ -24,16 +24,9 @@
                         class="shadow form-control "
                         id="input_id" name="input_id"
                         aria-describedby="id"
-                        placeholder="Introduce el id">
-                </div>
-                <div class="form-group">
-                    <label for="input_nombre">Nombre</label>
-                    <input type="text"
-                        class="shadow form-control "
-                        id="input_nombre"
-                        name="input_nombre"
-                        aria-describedby="nombre"
-                        placeholder="Introduce tu nombre">
+                        placeholder="Introduce el id"
+                        style="border-color: <?= isset($errores) && isset($errores["error_id"]) ? "red" : "" ?>">
+                    <?php if (isset($errores) && isset($errores["error_id"])):?><small id="idError" class="form-text text-danger"><?= $errores["error_id"]?></small> <?php endif;?>
                 </div>
                 <div class="form-group">
                     <label for="input_descripcion">Descripcion</label>
@@ -42,7 +35,9 @@
                         id="input_descripcion"
                         name="input_descripcion"
                         aria-describedby="descripcion"
-                        placeholder="Introduce tu idea">
+                        placeholder="Introduce tu idea"
+                        style="border-color: <?= isset($errores) && isset($errores["error_descripcion"]) ? "red" : "" ?>">
+                    <?php if (isset($errores) && isset($errores["error_descripcion"])):?><small id="descripcionError" class="form-text text-danger"><?= $errores["error_descripcion"]?></small> <?php endif;?>
                 </div>
                 <div class="form-group">
                     <label for="input_fecha_cita">Fecha y hora para la cita</label>
@@ -51,7 +46,9 @@
                         id="input_fecha_cita"
                         name="input_fecha_cita"
                         aria-describedby="fechacita"
-                        placeholder="Introduce la fecha y hora">
+                        placeholder="Introduce la fecha y hora"
+                        style="border-color: <?= isset($errores) && isset($errores["error_fecha_cita"]) ? "red" : "" ?>">
+                    <?php if (isset($errores) && isset($errores["error_fecha_cita"])):?><small id="fechaCitaError" class="form-text text-danger"><?= $errores["error_fecha_cita"]?></small> <?php endif;?>
                 </div>
                 <div class="form-group">
                     <label for="input_cliente">Nombre cliente</label>
@@ -59,7 +56,9 @@
                         class="shadow form-control "
                         id="input_cliente"
                         name="input_cliente"
-                        placeholder="Nombre cliente">
+                        placeholder="Nombre cliente"
+                        style="border-color: <?= isset($errores) && isset($errores["error_cliente"]) ? "red" : "" ?>">
+                    <?php if (isset($errores) && isset($errores["error_cliente"])):?><small id="clienteError" class="form-text text-danger"><?= $errores["error_cliente"]?></small> <?php endif;?>
                 </div>
                 <div class="form-group">
                     <label for="input_tatuador">Nombre tatuador</label>
@@ -67,7 +66,9 @@
                         class="shadow form-control "
                         id="input_tatuador"
                         name="input_tatuador"
-                        placeholder="Nombre tatuador">
+                        placeholder="Nombre tatuador"
+                        style="border-color: <?= isset($errores) && isset($errores["error_tatuador"]) ? "red" : "" ?>">
+                    <?php if (isset($errores) && isset($errores["error_tatuador"])):?><small id="tatuadorError" class="form-text text-danger"><?= $errores["error_tatuador"]?></small> <?php endif;?>
                 </div>
                 <div class="container__btns-form">
                     <button type="submit" class="btn btn-primary btns-form__btn-enviar">Enviar</button>
@@ -75,6 +76,7 @@
                 </div>
             </div>
         </form>
+        <?php if (isset($errores) && isset($errores["error_bd"])):?><p id="bdError" class="form-text text-danger"><?= $errores["error_bd"]?></p> <?php endif;?>
     </main>
 </body>
 
@@ -84,4 +86,4 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="./public/js/datepickerinitialzr.js"></script>
+<script src="../public/js/datepickerinitialzr.js"></script>

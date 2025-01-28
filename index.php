@@ -16,8 +16,35 @@
     // Cargamos los controladores que necesitamos.
     require_once "./controllers/CitaController.php";
 
-    $controller = new CitaController();
-    $controller->showAltaCita();
+    // Quiero obtener la url de la petición
+    $requestUri = $_SERVER["REQUEST_URI"] ?? "";
+
+    // Queremos llamar a un controller u otro dependiendo de la $requestUri
+    switch ($requestUri) {
+        // 1er caso -> si llamamos a la uri de la alta
+        case "/tattooshop_php/citas/alta":
+            $citaController = new CitaController();
+
+            $requestMethod = $_SERVER["REQUEST_METHOD"]; // Va a ser GET o POST
+
+            if($requestMethod == "GET") {
+
+                $citaController->showAltaCita();
+
+            } elseif ($requestMethod == "POST") {
+
+                $datos = $_POST ?? [];
+
+                $citaController->insertCita($datos);
+
+            }
+
+            break;
+        // caso por defecto -> llamamos a 404
+        default:
+            echo "<h1>PÁGINA NO ENCONTRADA</h1>";
+            break;
+    }
 
 
 
