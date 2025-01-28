@@ -76,7 +76,7 @@
                 </div>
             </div>
         </form>
-        <?php if (isset($errores) && isset($errores["error_bd"])):?><p id="bdError" class="form-text text-danger"><?= $errores["error_bd"]?></p> <?php endif;?>
+        <?php if (isset($errores) && isset($errores["error_bd"])):?><p id="bdError" class="text-danger"><?= $errores["error_bd"]?></p> <?php endif;?>
     </main>
 </body>
 
