@@ -84,7 +84,8 @@
                 } else {
 
                     // LLAMAR A ALGÚN SITIO Y MOSTRAR UN MENSAJE DE ERROR
-                    $this->showAltaCita($errores["error_db"] = "Error al insertar la cita, inténtelo de nuevo más tarde.");
+                    $errores["error_db"] = "Error al insertar la cita, inténtelo de nuevo más tarde.";
+                    $this->showAltaCita($errores);
 
                 }
 
