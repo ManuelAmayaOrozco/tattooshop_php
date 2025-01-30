@@ -87,7 +87,22 @@
                 if($operacionExitosa) {
 
                     // LLAMAR A UNA PÁGINA QUE MUESTRE EL MENSAJE DE ÉXITO
-                    echo "<h1>CITA REGISTRADA</h1>";
+                    $tatuadores = $this->tatuadorModel->leerTatuadores();
+
+                        foreach ($tatuadores as $tat) {
+
+                            if ($tat["nombre"] == $input_tatuador) {
+
+                                $tatuadorNombre = $input_tatuador;
+                                $tatuadorEmail = $tat["email"];
+                                $tatuadorFoto = $tat["foto"];
+                                break;
+
+                            }
+
+                        }
+
+                    require_once "./views/citasViews/CitaConfirmacionView.php";
 
                 } else {
 
