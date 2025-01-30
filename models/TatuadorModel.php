@@ -32,6 +32,28 @@
 
         }
 
+        public function leerTatuadores() {
+
+            $this->conexion = $this->dbHandler->conectar();
+
+            $sql = "SELECT * FROM $this->nombreTabla";
+
+            $stmt = $this->conexion->prepare($sql);
+
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+
+            $tatuadores = [];
+            while ($fila = $resultado->fetch_assoc()) {
+
+                $tatuadores[] = $fila;
+
+            }
+
+            return $tatuadores;
+
+        }
+
     }
 
 ?>

@@ -62,12 +62,18 @@
                 </div>
                 <div class="form-group">
                     <label for="input_tatuador">Nombre tatuador</label>
-                    <input type="text"
+                    <select type="text"
                         class="shadow form-control "
                         id="input_tatuador"
                         name="input_tatuador"
-                        placeholder="Nombre tatuador"
                         style="border-color: <?= isset($errores) && isset($errores["error_tatuador"]) ? "red" : "" ?>">
+                        <option value="" selected>-Elige tatuador-</option>
+                        <?php if(isset($tatuadores)): ?>
+                            <?php foreach ($tatuadores as $tatuador): ?>
+                                <option value="<?= $tatuador["nombre"] ?>"><?= $tatuador["nombre"] ?></option>
+                            <?php endforeach;?>
+                        <?php endif; ?>
+                    </select>
                     <?php if (isset($errores) && isset($errores["error_tatuador"])):?><small id="tatuadorError" class="form-text text-danger"><?= $errores["error_tatuador"]?></small> <?php endif;?>
                 </div>
                 <div class="container__btns-form">
