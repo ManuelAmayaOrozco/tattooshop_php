@@ -54,7 +54,7 @@
 
                 $datos = $_POST ?? [];
 
-                $tataudorController->insertTatuador($datos);
+                $tatuadorController->insertTatuador($datos);
 
             }
 

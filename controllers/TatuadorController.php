@@ -11,10 +11,10 @@
         }
 
         public function showAltaTatuador($errores = []) {
-            require_once "./views/tatuadoresViews/AltaTatuadorView.php";
+            require_once "./views/tatuadoresViews/TatuadorAltaView.php";
         }
 
-        public function insertCita($datos = []) {
+        public function insertTatuador($datos = []) {
 
             $input_nombre = $datos["input_nombre"] ?? "";
             $input_email = $datos["input_email"] ?? "";
@@ -31,7 +31,7 @@
                 }
                 
                 if($input_email == "") {
-                    $errores["error_email"] = "El campo email es obligatorio";
+                    $errores["error_email"] = "El campo email es obligatorio"; // El email es UNIQUE en la base de datos por lo que no podrá ser repetido
                 }
 
                 if($input_password == "") {
@@ -54,12 +54,12 @@
 
                 if($operacionExitosa) {
 
-                    require_once "./views/tatuadoresViews/AltaTatuadorCorrectoView.php";
+                    require_once "./views/tatuadoresViews/TatuadorAltaCorrectaView.php";
 
                 } else {
 
-                    $errores["error_db"] = "Error al insertar la cita, inténtelo de nuevo más tarde.";
-                    $this->showAltaCita($errores);
+                    $errores["error_db"] = "Error al insertar la cita, inténtelo de nuevo más tarde."; // Salta al intentar meter un email ya existente por ejemplo
+                    $this->showAltaTatuador($errores);
 
                 }
 
