@@ -15,6 +15,7 @@
    
     // Cargamos los controladores que necesitamos.
     require_once "./controllers/CitaController.php";
+    require_once "./controllers/TatuadorController.php";
 
     // Quiero obtener la url de la petición
     $requestUri = $_SERVER["REQUEST_URI"] ?? "";
@@ -36,6 +37,24 @@
                 $datos = $_POST ?? [];
 
                 $citaController->insertCita($datos);
+
+            }
+
+            break;
+        case "/tattooshop_php/tatuadores/alta":
+            $tatuadorController = new TatuadorController();
+
+            $requestMethod = $_SERVER["REQUEST_METHOD"]; // Va a ser GET o POST
+
+            if($requestMethod == "GET") {
+
+                $tatuadorController->showAltaTatuador();
+
+            } elseif ($requestMethod == "POST") {
+
+                $datos = $_POST ?? [];
+
+                $tataudorController->insertTatuador($datos);
 
             }
 
